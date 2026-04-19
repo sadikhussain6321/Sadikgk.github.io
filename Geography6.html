@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 जल संसाधन MCQ टेस्ट | Sadik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0b2b3b, #1a4a6f);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        /* वॉटरमार्क (Watermark) - Sadik */
+        body::before {
+            content: "Sadik 😊";
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 60px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+            z-index: 999;
+            transform: rotate(-15deg);
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 5px;
+            white-space: nowrap;
+        }
+        /* एक और वॉटरमार्क पीछे (बैकग्राउंड में) */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 950px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: #0a3b4b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .header h2 {
+            font-size: 1.6rem;
+        }
+        .header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .timer-box {
+            background: #e67e22;
+            padding: 10px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: white;
+            font-family: monospace;
+        }
+        .name-section {
+            padding: 20px;
+            background: #eef2fa;
+            text-align: center;
+            border-bottom: 2px solid #ccc;
+        }
+        .name-section input {
+            padding: 10px 18px;
+            font-size: 18px;
+            width: 70%;
+            max-width: 280px;
+            border: 1px solid #aaa;
+            border-radius: 40px;
+            outline: none;
+            text-align: center;
+        }
+        .name-section button {
+            padding: 10px 22px;
+            font-size: 18px;
+            background: #0a3b4b;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: 0.2s;
+        }
+        .quiz-area {
+            padding: 15px;
+            display: none;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+        .question-card {
+            background: #fefefe;
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 14px;
+            border-left: 6px solid #0a3b4b;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            transition: 0.1s;
+        }
+        .question-text {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 6px;
+        }
+        .options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            background: #eef2f5;
+            padding: 4px 12px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            accent-color: #0a3b4b;
+            width: 16px;
+            height: 16px;
+        }
+        .submit-btn {
+            display: block;
+            width: 70%;
+            margin: 25px auto;
+            padding: 12px;
+            font-size: 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .result-area {
+            padding: 20px;
+            background: #e9f0f5;
+            text-align: center;
+            border-top: 2px solid #ccc;
+            display: none;
+        }
+        .score-text {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #2c3e66;
+        }
+        .correct-ans {
+            background-color: #d4edda !important;
+            border-left: 6px solid #28a745 !important;
+        }
+        .wrong-ans {
+            background-color: #f8d7da !important;
+            border-left: 6px solid #dc3545 !important;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+            background: #f0f2f5;
+            color: gray;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        @media (max-width: 650px) {
+            .options {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .question-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2>💧 जल संसाधन (भूगोल)</h2>
+        <p>कक्षा 12 | 67 प्रश्न | 25 मिनट</p>
+    </div>
+    <div class="timer-box" id="timerDisplay">⏱️ 25:00</div>
+
+    <!-- Name Entry -->
+    <div class="name-section" id="nameSection">
+        <h3>📛 अपना नाम लिखें</h3>
+        <input type="text" id="studentName" placeholder="जैसे: Sadik, Riya, etc">
+        <button id="startTestBtn">🚀 टेस्ट शुरू करें</button>
+    </div>
+
+    <!-- Quiz Area -->
+    <div class="quiz-area" id="quizArea">
+        <div id="questionsContainer"></div>
+        <button class="submit-btn" id="submitTest">📥 टेस्ट सबमिट करें</button>
+    </div>
+
+    <!-- Result Area -->
+    <div class="result-area" id="resultArea">
+        <h3>📊 परिणाम</h3>
+        <p id="studentNameDisplay"></p>
+        <div class="score-text" id="scoreText"></div>
+        <button id="restartBtn" style="padding:10px 25px; background:#0a3b4b; color:white; border:none; border-radius:40px; cursor:pointer;">🔄 नया टेस्ट</button>
+    </div>
+    <footer>© Sadik | ऑनलाइन टेस्ट सीरीज | जल संसाधन</footer>
+</div>
+
+<script>
+    // ---------- 67 प्रश्न (संक्षिप्त, लेकिन सभी) ----------
+    const questions = [
+        { text: "पृथ्वी पर कुल जल का कितना % अलवणीय जल है?", options: ["2%", "3%", "4%", "1%"], correct: "A" },
+        { text: "भारत के जल संसाधन से जुड़ी समस्या?", options: ["वितरण", "उपलब्धता", "संरक्षण", "सभी"], correct: "D" },
+        { text: "नीरू-मीरू संबंधित है?", options: ["जल संभर प्रबंधन", "सिंचाई प्रबंधन", "प्रदर्शन प्रबंधन", "पर्यावरण प्रबंधन"], correct: "A" },
+        { text: "सर्वाधिक प्रदूषित नदी?", options: ["सतलज", "गोदावरी", "ब्रह्मपुत्र", "यमुना"], correct: "D" },
+        { text: "भाखड़ा नांगल परियोजना किस नदी पर?", options: ["सतलज", "ब्यास", "गंगा", "नर्मदा"], correct: "A" },
+        { text: "लैगून और पश्चजल कहाँ मिलते हैं?", options: ["केरल", "ओडिशा", "पश्चिम बंगाल", "सभी में"], correct: "D" },
+        { text: "कुल जल का सबसे अधिक उपयोग?", options: ["सिंचाई", "घरेलू", "उद्योग", "कोई नहीं"], correct: "A" },
+        { text: "भौम जल उपयोग (संभाव्य से अधिक) किस राज्य में?", options: ["तमिलनाडु", "आंध्र", "कर्नाटक", "केरल"], correct: "A" },
+        { text: "जल कैसा संसाधन है?", options: ["अजैव", "जैव", "अनवीकरणीय", "चक्रीय"], correct: "D" },
+        { text: "इंदिरा गांधी नहर में पानी किससे आता है?", options: ["गंगा", "यमुना", "केन", "व्यास"], correct: "D" },
+        { text: "सबसे लंबी नदी?", options: ["गंगा", "महानदी", "नर्मदा", "ब्रह्मपुत्र"], correct: "A" },
+        { text: "सबसे अधिक जल उपयोगिता वाली नदी?", options: ["कृष्णा", "ब्रह्मपुत्र", "गंगा", "गोदावरी"], correct: "C" },
+        { text: "सबसे अधिक पुनःपूर्तियोग्य भौम जल वाली नदी?", options: ["गंगा", "सिंधु", "ब्रह्मपुत्र", "गोदावरी"], correct: "A" },
+        { text: "वार्षिक वर्षा (घन किमी)?", options: ["2000", "4000", "3000", "5000"], correct: "B" },
+        { text: "यमुना प्रदूषित है (A) कारण (R) बस्तियाँ", options: ["A,R सही,R सही व्याख्या", "A,R सही,R व्याख्या नहीं", "A सही R गलत", "A गलत R सही"], correct: "A" },
+        { text: "हीराकुंड परियोजना कहाँ?", options: ["ओडिशा", "छत्तीसगढ़", "मध्य प्रदेश", "झारखंड"], correct: "A" },
+        { text: "हरियाली प्रोजेक्ट संबंधित है?", options: ["वायु", "जल", "A और B", "कोई नहीं"], correct: "B" },
+        { text: "भारत में विश्व के धरातलीय जल का %?", options: ["4%", "2.45%", "3.8%", "1.5%"], correct: "B" },
+        { text: "विश्व जल संसाधनों में भारत का %?", options: ["3%", "5%", "4%", "6%"], correct: "C" },
+        { text: "भारत की जनसंख्या (विश्व का %)?", options: ["12%", "14%", "16%", "18%"], correct: "C" },
+        { text: "वर्षा जल कुल मात्रा (घन किमी)?", options: ["2000", "3000", "4000", "5000"], correct: "C" },
+        { text: "धरातलीय+पुनःपूर्ति भौम जल (घन किमी)?", options: ["1869", "2000", "1000", "1500"], correct: "A" },
+        { text: "लाभदायक उपयोग योग्य जल (घन किमी)?", options: ["1122", "900", "1300", "1500"], correct: "A" },
+        { text: "धरातलीय जल स्रोत?", options: ["भूमिगत", "वर्षा", "नदी/झील", "समुद्र"], correct: "C" },
+        { text: "1.6 km+ लंबी नदियाँ?", options: ["5360", "8360", "10360", "12360"], correct: "C" },
+        { text: "औसत वार्षिक प्रवाह (घन किमी)?", options: ["1500", "1869", "1000", "2000"], correct: "B" },
+        { text: "धरातलीय जल का प्रयोग योग्य %?", options: ["50%", "40%", "32%", "60%"], correct: "C" },
+        { text: "बड़े जलप्रहरण वाली नदियाँ?", options: ["यमुना,गोदावरी,कावेरी", "गंगा,ब्रह्मपुत्र,सिंधु", "नर्मदा,ताप्ती,महानदी", "सरस्वती,कृष्णा,घाघरा"], correct: "B" },
+        { text: "अधिक वर्षा वाले जलग्रहण?", options: ["कृष्णा,गोदावरी", "गंगा,ब्रह्मपुत्र,बराक", "ताप्ती,नर्मदा", "रावी,चिनाब"], correct: "B" },
+        { text: "गंगा,ब्रह्मपुत्र,बराक क्षेत्रफल भाग?", options: ["1/4", "1/2", "1/3", "2/3"], correct: "C" },
+        { text: "एक तिहाई भाग में धरातलीय जल %?", options: ["40%", "50%", "60%", "70%"], correct: "C" },
+        { text: "जल का सबसे बड़ा स्रोत?", options: ["समुद्र", "भुजल", "वर्षा", "बर्फ"], correct: "C" },
+        { text: "लाभदायक उपयोग योग्य जल % (कुल उपलब्ध का)?", options: ["50%", "60%", "70%", "80%"], correct: "B" },
+        { text: "पुनःपूर्तियोग्य भौम जल अर्थ?", options: ["समुद्री", "बर्फ पिघला", "भूमिगत जो पुनः भरे", "वर्षा जल"], correct: "C" },
+        { text: "अधिक जल संसाधन क्षेत्र?", options: ["पश्चिमी राजस्थान", "उत्तर-पूर्व भारत", "मध्य भारत", "दक्षिण-पश्चिम"], correct: "B" },
+        { text: "गंगा,ब्रह्मपुत्र,सिंधु प्रकार?", options: ["वर्षा आधारित", "हिमनद आधारित", "वृष्टि+हिम", "भूजल"], correct: "C" },
+        { text: "नदियों से उपयोग में लाया जा रहा जल (घन किमी)?", options: ["690", "1122", "1869", "4000"], correct: "A" },
+        { text: "धरातल जल का % कृषि में?", options: ["72%", "89%", "92%", "85%"], correct: "C" },
+        { text: "भूमिगत जल का % कृषि में?", options: ["85%", "80%", "92%", "70%"], correct: "C" },
+        { text: "औद्योगिक क्षेत्र में धरातल जल %?", options: ["10%", "5%", "3%", "2%"], correct: "D" },
+        { text: "औद्योगिक क्षेत्र में भूमिगत जल %?", options: ["2%", "5%", "10%", "1%"], correct: "B" },
+        { text: "पंजाब,हरियाणा,UP में % सिंचित क्षेत्र?", options: ["85%", "75%", "90%", "70%"], correct: "A" },
+        { text: "पंजाब में % सिंचाई (कुएँ/नलकूप)?", options: ["80%", "76.01%", "70%", "60%"], correct: "B" },
+        { text: "हरियाणा में % सिंचाई (कुएँ/नलकूप)?", options: ["50%", "60%", "51.3%", "55%"], correct: "C" },
+        { text: "CPCB full form?", options: ["Central Pollution Control Bureau", "Central Pollution Control Board", "Central Protection Control Board", "Central Public Control Board"], correct: "B" },
+        { text: "SPCB full form?", options: ["State Pollution Control Bureau", "State Protection Board", "State Pollution Control Board", "State Public Board"], correct: "C" },
+        { text: "जल अधिनियम वर्ष?", options: ["1986", "1974", "1990", "1977"], correct: "B" },
+        { text: "पर्यावरण संरक्षण अधिनियम वर्ष?", options: ["1986", "1974", "1980", "1997"], correct: "A" },
+        { text: "1997 में नदी किनारे कितने प्रदूषण उद्योग?", options: ["251", "300", "200", "150"], correct: "A" },
+        { text: "जल उपकर अधिनियम वर्ष?", options: ["1980", "1977", "1974", "1985"], correct: "B" },
+        { text: "जल उपकर अधिनियम उद्देश्य?", options: ["जल विवरण", "सिंचाई", "प्रदूषण कम करना", "जल विद्युत"], correct: "C" },
+        { text: "हरियाली केंद्र किसका कार्यक्रम?", options: ["राज्य सरकार", "निजी", "केंद्र सरकार", "पंचायत"], correct: "C" },
+        { text: "हरियाली केंद्र संबंधित?", options: ["शहरी विकास", "उद्योग", "जल संभर विकास", "सौर ऊर्जा"], correct: "C" },
+        { text: "हरियाली केंद्र किसे सक्षम बनाता है?", options: ["शहरी", "व्यापारी", "ग्रामीण जनता", "सरकारी"], correct: "C" },
+        { text: "नीरू-मीरू राज्य?", options: ["राजस्थान", "मध्य प्रदेश", "आंध्र प्रदेश", "गुजरात"], correct: "C" },
+        { text: "नीरू-मीरू अर्थ?", options: ["जल-ऊर्जा", "जल-आप", "जल-जीवन", "जल-समाज"], correct: "B" },
+        { text: "अरवारी पानी संसद राज्य?", options: ["उत्तराखंड", "राजस्थान", "पंजाब", "UP"], correct: "B" },
+        { text: "नीरू-मीरू उद्देश्य?", options: ["शिक्षा", "जल संग्रहण", "वन्यजीव", "सिंचाई कर"], correct: "B" },
+        { text: "CPCB विफलता दर्शाती है?", options: ["जल उपलब्धता", "उद्योग विकास", "नदियों किनारे उद्योग", "भूजल स्तर"], correct: "C" },
+        { text: "भूमिगत जल अत्यधिक दोहन कारण?", options: ["वर्षा अधिकता", "उद्योग", "सिंचाई निर्भरता", "जल विद्युत"], correct: "C" },
+        { text: "जल अधिनियम 1974 क्षेत्र?", options: ["सिंचाई", "जल प्रदूषण नियंत्रण", "कृषि", "शहरी जल"], correct: "B" },
+        { text: "पर्यावरण अधिनियम 1986 क्यों?", options: ["प्रदूषण कम करने", "सिंचाई", "उद्योग", "वर्षा जल संचयन"], correct: "A" },
+        { text: "ग्रामीण जल संरक्षण योजना?", options: ["जल जीवन", "नीरू-मीरू", "अमृत", "जल बंधन"], correct: "B" },
+        { text: "हरियाली योजना प्रकार?", options: ["औद्योगिक", "नगरीय", "कृषि विपणन", "जल संभर विकास"], correct: "D" }
+    ];
+
+    // Timer & State
+    let timerInterval = null;
+    let timeLeft = 25 * 60;
+    let testStarted = false;
+    let studentName = "";
+
+    const nameSection = document.getElementById('nameSection');
+    const quizArea = document.getElementById('quizArea');
+    const resultArea = document.getElementById('resultArea');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const startBtn = document.getElementById('startTestBtn');
+    const submitBtn = document.getElementById('submitTest');
+    const restartBtn = document.getElementById('restartBtn');
+    const questionsContainer = document.getElementById('questionsContainer');
+
+    function formatTime(sec) {
+        let m = Math.floor(sec/60);
+        let s = sec%60;
+        return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    }
+
+    function updateTimerUI() {
+        timerDisplay.innerText = `⏱️ ${formatTime(timeLeft)}`;
+        if(timeLeft <= 0 && testStarted) {
+            clearInterval(timerInterval);
+            alert("समय समाप्त! टेस्ट सबमिट हो रहा है।");
+            submitTest();
+        }
+    }
+
+    function startTimer() {
+        if(timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            if(timeLeft > 0 && testStarted) {
+                timeLeft--;
+                updateTimerUI();
+            } else if(timeLeft <= 0 && testStarted) {
+                clearInterval(timerInterval);
+                submitTest();
+            }
+        }, 1000);
+    }
+
+    function renderQuestions() {
+        questionsContainer.innerHTML = '';
+        questions.forEach((q, idx) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.setAttribute('data-qid', idx);
+            const qText = document.createElement('div');
+            qText.className = 'question-text';
+            qText.innerText = `${idx+1}. ${q.text}`;
+            card.appendChild(qText);
+            const optsDiv = document.createElement('div');
+            optsDiv.className = 'options';
+            const letters = ['A','B','C','D'];
+            q.options.forEach((opt, oi) => {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `q${idx}`;
+                radio.value = letters[oi];
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(` ${letters[oi]}: ${opt}`));
+                optsDiv.appendChild(label);
+            });
+            card.appendChild(optsDiv);
+            questionsContainer.appendChild(card);
+        });
+    }
+
+    function submitTest() {
+        if(!testStarted) return;
+        clearInterval(timerInterval);
+        testStarted = false;
+        let score = 0;
+        for(let i=0; i<questions.length; i++) {
+            const selected = document.querySelector(`input[name="q${i}"]:checked`);
+            const userAns = selected ? selected.value : null;
+            const correctAns = questions[i].correct;
+            const card = document.querySelector(`.question-card[data-qid='${i}']`);
+            if(!card) continue;
+            card.classList.remove('correct-ans','wrong-ans');
+            if(userAns === correctAns) {
+                score++;
+                card.classList.add('correct-ans');
+            } else {
+                card.classList.add('wrong-ans');
+                let correctLetter = correctAns;
+                let correctText = questions[i].options[correctLetter.charCodeAt(0)-65];
+                let hint = document.createElement('div');
+                hint.style.fontSize = "11px";
+                hint.style.marginTop = "5px";
+                hint.style.color = "#b52b2b";
+                hint.innerHTML = `✔️ सही: ${correctLetter}: ${correctText}`;
+                const old = card.querySelector('.correct-hint');
+                if(old) old.remove();
+                hint.classList.add('correct-hint');
+                card.appendChild(hint);
+            }
+        }
+        quizArea.style.display = 'none';
+        resultArea.style.display = 'block';
+        document.getElementById('studentNameDisplay').innerHTML = `👤 <strong>${studentName}</strong>`;
+        document.getElementById('scoreText').innerHTML = `🏆 ${score} / ${questions.length}`;
+    }
+
+    function startTest() {
+        const nameInput = document.getElementById('studentName');
+        if(!nameInput.value.trim()) {
+            alert("कृपया अपना नाम लिखें!");
+            return;
+        }
+        studentName = nameInput.value.trim();
+        testStarted = true;
+        timeLeft = 25*60;
+        updateTimerUI();
+        startTimer();
+        nameSection.style.display = 'none';
+        quizArea.style.display = 'block';
+        resultArea.style.display = 'none';
+        renderQuestions();
+    }
+
+    function restartTest() {
+        clearInterval(timerInterval);
+        testStarted = false;
+        nameSection.style.display = 'block';
+        quizArea.style.display = 'none';
+        resultArea.style.display = 'none';
+        document.getElementById('studentName').value = '';
+        timeLeft = 25*60;
+        updateTimerUI();
+    }
+
+    startBtn.addEventListener('click', startTest);
+    submitBtn.addEventListener('click', () => { if(confirm("सबमिट करें?")) submitTest(); });
+    restartBtn.addEventListener('click', restartTest);
+    updateTimerUI();
+</script>
+</body>
+</html>

@@ -2,173 +2,182 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⛏️ खनिज एवं ऊर्जा संसाधन MCQ | Sadik</title>
+    <title>📊 खनिज + ऊर्जा | Analysis भी दिखेगा | Sadik</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #1e3c2c, #2d5a3b);
-            min-height: 100vh;
+            background: #1e2a3a;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             padding: 20px;
-            position: relative;
         }
-        /* वॉटरमार्क - Sadik */
-        body::before {
-            content: "Sadik 😊";
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 60px;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.08);
-            pointer-events: none;
-            z-index: 999;
-            transform: rotate(-15deg);
-            font-family: 'Arial', sans-serif;
-            letter-spacing: 5px;
-            white-space: nowrap;
-        }
+
         .container {
-            position: relative;
-            z-index: 1;
-            max-width: 950px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.97);
+            max-width: 1000px;
+            margin: auto;
+            background: white;
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
+
         .header {
             background: #1e4a2f;
             color: white;
-            padding: 15px;
             text-align: center;
+            padding: 16px;
         }
-        .header h2 {
-            font-size: 1.6rem;
-        }
+
         .timer-box {
             background: #e67e22;
-            padding: 10px;
             text-align: center;
             font-size: 26px;
             font-weight: bold;
+            padding: 10px;
             color: white;
             font-family: monospace;
         }
+
         .name-section {
-            padding: 20px;
-            background: #eef2fa;
+            background: #f0f4fa;
             text-align: center;
+            padding: 20px;
             border-bottom: 2px solid #ccc;
         }
+
         .name-section input {
             padding: 10px 18px;
-            font-size: 18px;
             width: 70%;
             max-width: 280px;
-            border: 1px solid #aaa;
             border-radius: 40px;
-            outline: none;
-            text-align: center;
+            border: 1px solid #aaa;
+            font-size: 16px;
         }
+
         .name-section button {
-            padding: 10px 22px;
-            font-size: 18px;
             background: #1e4a2f;
             color: white;
+            padding: 10px 22px;
             border: none;
             border-radius: 40px;
             cursor: pointer;
-            margin-left: 8px;
+            margin-left: 10px;
         }
+
         .quiz-area {
-            padding: 15px;
-            display: none;
+            padding: 20px;
             max-height: 65vh;
             overflow-y: auto;
+            display: none;
         }
+
         .question-card {
             background: #fefefe;
-            margin-bottom: 12px;
-            padding: 12px;
-            border-radius: 14px;
             border-left: 6px solid #1e4a2f;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            margin-bottom: 16px;
+            padding: 14px;
+            border-radius: 14px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
         }
+
         .question-text {
             font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 15px;
         }
+
         .options {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 6px;
+            gap: 12px;
+            margin-top: 10px;
         }
+
         .options label {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 12px;
             background: #eef2f5;
-            padding: 4px 10px;
-            border-radius: 25px;
+            padding: 5px 14px;
+            border-radius: 30px;
             cursor: pointer;
+            font-size: 13px;
         }
+
         input[type="radio"] {
-            accent-color: #1e4a2f;
+            margin-right: 5px;
         }
+
         .submit-btn {
             display: block;
             width: 70%;
-            margin: 25px auto;
-            padding: 12px;
-            font-size: 20px;
+            margin: 20px auto;
             background: #27ae60;
             color: white;
+            font-size: 20px;
+            padding: 12px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
         }
+
         .result-area {
             padding: 20px;
             background: #e9f0f5;
             text-align: center;
-            border-top: 2px solid #ccc;
             display: none;
         }
+
         .score-text {
             font-size: 32px;
             font-weight: bold;
             margin: 10px 0;
             color: #1e4a2f;
         }
-        .correct-ans {
-            background-color: #d4edda !important;
-            border-left: 6px solid #28a745 !important;
+
+        .analysis-detail {
+            text-align: left;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 16px;
         }
-        .wrong-ans {
-            background-color: #f8d7da !important;
-            border-left: 6px solid #dc3545 !important;
+
+        .analysis-item {
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 12px;
+            font-size: 14px;
         }
+
+        .analysis-correct {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+        }
+
+        .analysis-wrong {
+            background: #f8d7da;
+            border-left: 5px solid #dc3545;
+        }
+
+        .restart-btn {
+            background: #1e4a2f;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 40px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
         footer {
+            background: #f0f2f5;
             text-align: center;
             padding: 10px;
-            font-size: 11px;
-            background: #f0f2f5;
-            color: gray;
-        }
-        @media (max-width: 650px) {
-            .options { flex-direction: column; gap: 6px; }
-            .question-text { font-size: 13px; }
+            font-size: 12px;
         }
     </style>
 </head>
@@ -176,32 +185,33 @@
 <div class="container">
     <div class="header">
         <h2>⛏️ खनिज एवं ऊर्जा संसाधन</h2>
-        <p>कक्षा 12 भूगोल | 73 प्रश्न | 25 मिनट</p>
+        <p>73 प्रश्न | 25 मिनट | पूरा ANALYSIS भी दिखेगा</p>
     </div>
     <div class="timer-box" id="timerDisplay">⏱️ 25:00</div>
 
     <div class="name-section" id="nameSection">
         <h3>📛 अपना नाम लिखें</h3>
-        <input type="text" id="studentName" placeholder="जैसे: Sadik, Riya, etc">
+        <input type="text" id="studentName" placeholder="उदा: Sadik">
         <button id="startTestBtn">🚀 टेस्ट शुरू करें</button>
     </div>
 
     <div class="quiz-area" id="quizArea">
         <div id="questionsContainer"></div>
-        <button class="submit-btn" id="submitTest">📥 टेस्ट सबमिट करें</button>
+        <button class="submit-btn" id="submitTest">📥 सबमिट करें & विश्लेषण देखें</button>
     </div>
 
     <div class="result-area" id="resultArea">
-        <h3>📊 परिणाम</h3>
+        <h3>📊 परिणाम + विश्लेषण</h3>
         <p id="studentNameDisplay"></p>
         <div class="score-text" id="scoreText"></div>
-        <button id="restartBtn" style="padding:10px 25px; background:#1e4a2f; color:white; border:none; border-radius:40px; cursor:pointer;">🔄 नया टेस्ट</button>
+        <div id="analysisBox" class="analysis-detail"></div>
+        <button class="restart-btn" id="restartBtn">🔄 नया टेस्ट शुरू करें</button>
     </div>
-    <footer>© Sadik | ऑनलाइन टेस्ट सीरीज | खनिज एवं ऊर्जा</footer>
+    <footer>© Sadik | हर गलत सवाल का सही जवाब भी दिखेगा ✅</footer>
 </div>
 
 <script>
-    // ---------- 73 प्रश्न (खनिज और ऊर्जा) ----------
+    // ======================= 73 QUESTIONS (FULL) ==================
     const questions = [
         { text: "नहरकटिया खनिज तेल क्षेत्र अवस्थित है?", options: ["गुजरात", "असम", "राजस्थान", "महाराष्ट्र"], correct: "B" },
         { text: "मुंबई हाई क्या है?", options: ["कोयला क्षेत्र", "पेट्रोलियम क्षेत्र", "ताँबा क्षेत्र", "अभ्रक क्षेत्र"], correct: "B" },
@@ -261,7 +271,7 @@
         { text: "रत्नागिरि किस राज्य में?", options: ["आन्ध्रप्रदेश", "ओडिशा", "गोवा", "महाराष्ट्र"], correct: "D" },
         { text: "कोरबा प्रसिद्ध है?", options: ["लोहा", "कोयला", "अभ्रक", "मैंगनीज"], correct: "B" },
         { text: "महानदी घाटी में कोयला क्षेत्र?", options: ["तालचर", "कोरबा", "बाँदा", "सिंगरौली"], correct: "A" },
-        { text: "भूरा कोयला (लिग्नाइट) कहाँ मिलता है?", options: ["पश्चिम बंगाल", "झारखण्ड", "आन्ध्रप्रदेश", "तमिलनाडु"], correct: "D" },
+        { text: "भूरा कोयला (लिग्नाइट) कहाँ?", options: ["पश्चिम बंगाल", "झारखण्ड", "आन्ध्रप्रदेश", "तमिलनाडु"], correct: "D" },
         { text: "डिगबोई कहाँ है?", options: ["गुजरात", "उत्तरप्रदेश", "असम", "तमिलनाडु"], correct: "C" },
         { text: "अंकलेश्वर किसका क्षेत्र?", options: ["कोयला", "पेट्रोलियम", "अभ्रक", "लौह-अयस्क"], correct: "B" },
         { text: "कोरबा से कोयला प्राप्त करता है?", options: ["राउरकेला", "भिलाई", "बोकारो", "विशाखापत्तनम"], correct: "B" },
@@ -277,7 +287,6 @@
         { text: "तारापुर केन्द्र?", options: ["उत्तर प्रदेश", "महाराष्ट्र", "कर्नाटक", "गुजरात"], correct: "B" }
     ];
 
-    // Timer & State
     let timerInterval = null;
     let timeLeft = 25 * 60;
     let testStarted = false;
@@ -287,33 +296,31 @@
     const quizArea = document.getElementById('quizArea');
     const resultArea = document.getElementById('resultArea');
     const timerDisplay = document.getElementById('timerDisplay');
-    const startBtn = document.getElementById('startTestBtn');
-    const submitBtn = document.getElementById('submitTest');
-    const restartBtn = document.getElementById('restartBtn');
     const questionsContainer = document.getElementById('questionsContainer');
+    const analysisBox = document.getElementById('analysisBox');
 
     function formatTime(sec) {
-        let m = Math.floor(sec/60);
-        let s = sec%60;
+        let m = Math.floor(sec / 60);
+        let s = sec % 60;
         return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
     }
 
     function updateTimerUI() {
         timerDisplay.innerText = `⏱️ ${formatTime(timeLeft)}`;
-        if(timeLeft <= 0 && testStarted) {
+        if (timeLeft <= 0 && testStarted) {
             clearInterval(timerInterval);
-            alert("समय समाप्त! टेस्ट सबमिट हो रहा है।");
+            alert("समय समाप्त! अब टेस्ट सबमिट होगा।");
             submitTest();
         }
     }
 
     function startTimer() {
-        if(timerInterval) clearInterval(timerInterval);
+        if (timerInterval) clearInterval(timerInterval);
         timerInterval = setInterval(() => {
-            if(timeLeft > 0 && testStarted) {
+            if (timeLeft > 0 && testStarted) {
                 timeLeft--;
                 updateTimerUI();
-            } else if(timeLeft <= 0 && testStarted) {
+            } else if (timeLeft <= 0 && testStarted) {
                 clearInterval(timerInterval);
                 submitTest();
             }
@@ -349,50 +356,50 @@
     }
 
     function submitTest() {
-        if(!testStarted) return;
+        if (!testStarted) return;
         clearInterval(timerInterval);
         testStarted = false;
+
         let score = 0;
-        for(let i=0; i<questions.length; i++) {
-            const selected = document.querySelector(`input[name="q${i}"]:checked`);
-            const userAns = selected ? selected.value : null;
+        let analysisHTML = `<h4>🧾 प्रश्न-वार विश्लेषण (तुम्हारा उत्तर VS सही उत्तर)</h4>`;
+
+        for (let i = 0; i < questions.length; i++) {
+            const selectedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+            const userAnswer = selectedRadio ? selectedRadio.value : null;
             const correctAns = questions[i].correct;
-            const card = document.querySelector(`.question-card[data-qid='${i}']`);
-            if(!card) continue;
-            card.classList.remove('correct-ans','wrong-ans');
-            if(userAns === correctAns) {
-                score++;
-                card.classList.add('correct-ans');
-            } else {
-                card.classList.add('wrong-ans');
-                let correctLetter = correctAns;
-                let correctText = questions[i].options[correctLetter.charCodeAt(0)-65];
-                let hint = document.createElement('div');
-                hint.style.fontSize = "11px";
-                hint.style.marginTop = "5px";
-                hint.style.color = "#b52b2b";
-                hint.innerHTML = `✔️ सही: ${correctLetter}: ${correctText}`;
-                const old = card.querySelector('.correct-hint');
-                if(old) old.remove();
-                hint.classList.add('correct-hint');
-                card.appendChild(hint);
-            }
+            const isCorrect = (userAnswer === correctAns);
+            if (isCorrect) score++;
+
+            const userText = userAnswer ? `${userAnswer}: ${questions[i].options[userAnswer.charCodeAt(0)-65]}` : "❌ कोई उत्तर नहीं";
+            const correctText = `${correctAns}: ${questions[i].options[correctAns.charCodeAt(0)-65]}`;
+            const statusIcon = isCorrect ? "✅ सही" : "❌ गलत";
+
+            analysisHTML += `
+                <div class="analysis-item ${isCorrect ? 'analysis-correct' : 'analysis-wrong'}">
+                    <strong>प्रश्न ${i+1}:</strong> ${questions[i].text}<br>
+                    🧑‍🎓 तुम्हारा उत्तर: ${userText}<br>
+                    📘 सही उत्तर: ${correctText}<br>
+                    🔍 स्थिति: ${statusIcon}
+                </div>
+            `;
         }
-        quizArea.style.display = 'none';
-        resultArea.style.display = 'block';
+
+        analysisBox.innerHTML = analysisHTML;
         document.getElementById('studentNameDisplay').innerHTML = `👤 <strong>${studentName}</strong>`;
         document.getElementById('scoreText').innerHTML = `🏆 ${score} / ${questions.length}`;
+        quizArea.style.display = 'none';
+        resultArea.style.display = 'block';
     }
 
     function startTest() {
         const nameInput = document.getElementById('studentName');
-        if(!nameInput.value.trim()) {
-            alert("कृपया अपना नाम लिखें!");
+        if (!nameInput.value.trim()) {
+            alert("अपना नाम जरूर लिखें!");
             return;
         }
         studentName = nameInput.value.trim();
         testStarted = true;
-        timeLeft = 25*60;
+        timeLeft = 25 * 60;
         updateTimerUI();
         startTimer();
         nameSection.style.display = 'none';
@@ -408,13 +415,15 @@
         quizArea.style.display = 'none';
         resultArea.style.display = 'none';
         document.getElementById('studentName').value = '';
-        timeLeft = 25*60;
+        timeLeft = 25 * 60;
         updateTimerUI();
     }
 
-    startBtn.addEventListener('click', startTest);
-    submitBtn.addEventListener('click', () => { if(confirm("सबमिट करें?")) submitTest(); });
-    restartBtn.addEventListener('click', restartTest);
+    document.getElementById('startTestBtn').addEventListener('click', startTest);
+    document.getElementById('submitTest').addEventListener('click', () => {
+        if (confirm("सबमिट करें और विश्लेषण देखें?")) submitTest();
+    });
+    document.getElementById('restartBtn').addEventListener('click', restartTest);
     updateTimerUI();
 </script>
 </body>
